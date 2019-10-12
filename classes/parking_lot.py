@@ -26,7 +26,7 @@ class ParkingLot():
         heapq.heappop(self.__empty_slots)
         return "Allocated slot number: {0}".format(next_slot)
 
-    def exit_car(self, slot_number):
+    def car_departure(self, slot_number):
         if self.__slot_details[slot_number].is_empty():
             return "Slot number {0} is already empty".format(slot_number)
 

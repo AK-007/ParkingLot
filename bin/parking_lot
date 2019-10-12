@@ -17,3 +17,10 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 #   ruby $DIR/../main.rb $1
 # 
 # Important: Above commands is just examples, please modify to suit your requirement as necessary
+
+if [ $# -eq 0 ]
+  then
+    python3 $DIR/../main.py
+  else
+    python3 $DIR/../main.py $1
+fi
