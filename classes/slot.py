@@ -17,3 +17,9 @@ class Slot():
 
     def is_empty(self):
         return self.__is_empty
+
+    def mark_empty(self):
+        self.__is_empty = True
+        self.__registration_no = None
+        self.__colour = None
+        self.__associated_ticket = None
