@@ -9,6 +9,9 @@ class Slot():
     def get_registration_no(self):
         return self.__registration_no
 
+    def get_slot_number(self):
+        return self.__slot_number
+
     def get_colour(self):
         return self.__colour
 
