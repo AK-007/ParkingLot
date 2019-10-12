@@ -68,3 +68,13 @@ class ParkingLot():
 
         return "Not found"
 
+    # Get the details of filled slots in parking lot
+    def get_status(self):
+        result = []
+        for i in range(1, self.__number_of_slots+1):
+            slot = self.__slot_details[i]
+            if not slot.is_empty():
+                result.append((slot.get_slot_number(), slot.get_registration_no(), slot.get_colour()))
+
+        return result
+
