@@ -5,11 +5,14 @@ from commands import *
 
 def execute_command(parking_lot, command):
     if command[0] == "create_parking_lot":
-        parking_lot = ParkingLot(command[1])
+        parking_lot = ParkingLot(int(command[1]))
+        print("Created a parking lot with {0} slots".format(command[1]))
+    elif parking_lot is None:
+        print('First initialize the parking lot')
     elif command[0] == "park":
         park_new_car(parking_lot, command[1], command[2])
     elif command[0] == "leave":
-        car_departure(parking_lot, command[1])
+        car_departure(parking_lot, int(command[1]))
     elif command[0] == "status":
         get_status(parking_lot)
     elif command[0] == "registration_numbers_for_cars_with_colour":
@@ -20,13 +23,14 @@ def execute_command(parking_lot, command):
         get_slot_by_registration(parking_lot, command[1])
     else:
         print('No such command')
+    return parking_lot
 
 
 def interactive_mode():
     parking_lot = None
     command = input().split()
     while not command[0] == 'exit':
-        execute_command(parking_lot, command)
+        parking_lot = execute_command(parking_lot, command)
         command = input().split()
 
 
@@ -35,8 +39,8 @@ def file_read_mode(file_name):
     with open(file_name) as file:
         commands = file.readlines()
         for command in commands:
-            command.replace('\n', '').split()
-            execute_command(parking_lot, command)
+            command = command.replace('\n', '').split(' ')
+            parking_lot = execute_command(parking_lot, command)
 
 
 def main():
