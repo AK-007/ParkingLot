@@ -5,3 +5,4 @@
 #
 # After this is run, bin/parking_lot
 # should Just Work.
+python3 -m unittest tests.mytests.ParkingLotUnitTest

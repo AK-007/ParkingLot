@@ -8,17 +8,25 @@ def execute_command(parking_lot, command):
         parking_lot = ParkingLot(int(command[1]))
         print("Created a parking lot with {0} slots".format(command[1]))
     elif command[0] == "park":
-        park_new_car(parking_lot, command[1], command[2])
+        print(park_new_car(parking_lot, command[1], command[2]))
     elif command[0] == "leave":
-        car_departure(parking_lot, int(command[1]))
+        print(car_departure(parking_lot, int(command[1])))
     elif command[0] == "status":
         get_status(parking_lot)
     elif command[0] == "registration_numbers_for_cars_with_colour":
-        get_registration_by_colour(parking_lot, command[1])
+        result = get_registration_by_colour(parking_lot, command[1])
+        if type(result) is str:
+            print(result)
+        else:
+            print(*result, sep=', ')
     elif command[0] == "slot_numbers_for_cars_with_colour":
-        get_slot_by_colour(parking_lot, command[1])
+        result = get_slot_by_colour(parking_lot, command[1])
+        if type(result) is str:
+            print(result)
+        else:
+            print(*result, sep=', ')
     elif command[0] == "slot_number_for_registration_number":
-        get_slot_by_registration(parking_lot, command[1])
+        print(get_slot_by_registration(parking_lot, command[1]))
     else:
         print('No such command')
     return parking_lot

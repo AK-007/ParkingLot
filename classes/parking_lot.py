@@ -18,6 +18,9 @@ class ParkingLot():
     def get_next_empty_slot(self):
         return self.__empty_slots[0]
 
+    def is_slot_empty(self, slot_number):
+        return self.__slot_details[slot_number].is_empty()
+
     def park_new_car(self, registration_no, colour):
         if len(self.__empty_slots) == 0:
             return "Sorry, parking lot is full"
