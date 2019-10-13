@@ -7,8 +7,6 @@ def execute_command(parking_lot, command):
     if command[0] == "create_parking_lot":
         parking_lot = ParkingLot(int(command[1]))
         print("Created a parking lot with {0} slots".format(command[1]))
-    elif parking_lot is None:
-        print('First initialize the parking lot')
     elif command[0] == "park":
         park_new_car(parking_lot, command[1], command[2])
     elif command[0] == "leave":

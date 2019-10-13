@@ -12,6 +12,9 @@ class ParkingLot():
         self.__ticket_counter = 0
         heapq.heapify(self.__empty_slots)
 
+    def get_parking_lot_size(self):
+        return self.__number_of_slots
+
     def get_next_empty_slot(self):
         return self.__empty_slots[0]
 
@@ -27,6 +30,9 @@ class ParkingLot():
         return "Allocated slot number: {0}".format(next_slot)
 
     def car_departure(self, slot_number):
+        if slot_number not in self.__slot_details.keys():
+            return "Slot number {0} is already empty".format(slot_number)
+
         if self.__slot_details[slot_number].is_empty():
             return "Slot number {0} is already empty".format(slot_number)
 
@@ -40,6 +46,8 @@ class ParkingLot():
     def registration_numbers_for_cars_with_colour(self, colour):
         registration_list = []
         for i in range(1, self.__number_of_slots+1):
+            if i not in self.__slot_details.keys():
+                continue
             slot = self.__slot_details[i]
             if not slot.is_empty():
                 if slot.get_colour() == colour:
@@ -51,6 +59,8 @@ class ParkingLot():
     def slot_numbers_for_cars_with_colour(self, colour):
         slot_list = []
         for i in range(1, self.__number_of_slots+1):
+            if i not in self.__slot_details.keys():
+                continue
             slot = self.__slot_details[i]
             if not slot.is_empty():
                 if slot.get_colour() == colour:
@@ -61,6 +71,8 @@ class ParkingLot():
     # Slot number in which a car with a given registration number is parked
     def slot_number_for_registration_number(self, registration_no):
         for i in range(1, self.__number_of_slots+1):
+            if i not in self.__slot_details.keys():
+                continue
             slot = self.__slot_details[i]
             if not slot.is_empty():
                 if slot.get_registration_no() == registration_no:
@@ -72,6 +84,8 @@ class ParkingLot():
     def get_status(self):
         result = []
         for i in range(1, self.__number_of_slots+1):
+            if i not in self.__slot_details.keys():
+                continue
             slot = self.__slot_details[i]
             if not slot.is_empty():
                 result.append((slot.get_slot_number(), slot.get_registration_no(), slot.get_colour()))
