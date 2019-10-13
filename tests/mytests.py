@@ -20,13 +20,15 @@ class ParkingLotUnitTest(unittest.TestCase):
         res2 = park_new_car(parking_lot, "KA-01-P-344", "Black")
         self.assertEqual(res2, 'Sorry, parking lot is full')
 
-    def test_parking_allocated(self):
-        parking_lot = ParkingLot(1)
+    def test_successful_slot_allocation(self):
+        parking_lot = ParkingLot(2)
         res = park_new_car(parking_lot, "KA-01-P-333", "White")
         self.assertEqual(res, 'Allocated slot number: 1')
         res2 = get_slot_by_registration(parking_lot, "KA-01-P-333")
+        # Checking if correct slot is allocated, nearest to the entry
         self.assertEqual(res2, 1)
 
+    # Case when invalid slot number is provided
     def test_incorrect_slot_departure(self):
         parking_lot = ParkingLot(3)
         res = car_departure(parking_lot, 4)
@@ -51,6 +53,8 @@ class ParkingLotUnitTest(unittest.TestCase):
         p3 = park_new_car(parking_lot, "PA-01-P-433", "Black")
         res = get_registration_by_colour(parking_lot, "Black")
         self.assertEqual(res, ['AD-21-P-313', 'PA-01-P-433'])
+
+        # Case when there are no cars parked of the given colour
         res2 = get_registration_by_colour(parking_lot, "Green")
         self.assertEqual(res2, "No Green cars are parked")
 
@@ -61,6 +65,8 @@ class ParkingLotUnitTest(unittest.TestCase):
         p3 = park_new_car(parking_lot, "PA-01-P-433", "Black")
         res = get_slot_by_colour(parking_lot, "White")
         self.assertEqual(res, [1])
+
+        # Case when there are no cars parked of the given colour
         res2 = get_slot_by_colour(parking_lot, "Green")
         self.assertEqual(res2, "No Green cars are parked")
 
@@ -71,6 +77,8 @@ class ParkingLotUnitTest(unittest.TestCase):
         p3 = park_new_car(parking_lot, "PA-01-P-433", "Black")
         res = get_slot_by_registration(parking_lot, "AD-21-P-313")
         self.assertEqual(res, 2)
+
+        # Case when there is no car parked of the given registration number
         res2 = get_slot_by_registration(parking_lot, "QA-11-W-444")
         self.assertEqual(res2, "Not found")
 

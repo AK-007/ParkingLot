@@ -17,5 +17,6 @@ class Ticket():
     def is_expired(self):
         return self.__expired
 
+    # Mark the ticket expired when the car leaves the parking lot
     def mark_expired(self):
         self.__expired = True

@@ -8,6 +8,7 @@ def park_new_car(parking_lot, registration_no, colour):
 def car_departure(parking_lot, slot_number):
     if parking_lot is None:
         return 'Parking lot not initialized'
+    # Case when slot_number is not present in the parking lot
     elif slot_number > parking_lot.get_parking_lot_size():
         return 'No such parking lot'
     else:
