@@ -8,9 +8,9 @@ def car_departure(parking_lot, slot_number):
 
 def get_status(parking_lot):
     res = parking_lot.get_status()
-    print("Slot No.  Registration No  Colour")
+    print("Slot No.    Registration No    Colour")
     for s, r, c in res:
-        print("{:<10}{:<17}{}".format(s, r, c))
+        print("{:<12}{:<19}{}".format(s, r, c))
 
 
 def get_registration_by_colour(parking_lot, colour):
